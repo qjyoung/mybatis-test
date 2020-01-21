@@ -1,0 +1,53 @@
+#gradle ignore
+.gradle
+/local.properties
+/build
+/out
+/captures
+/.idea
+*.apk
+*.ap_
+*.dex
+*.class
+/*/gen/
+/*/build/
+proguard/
+/*/out/
+/.gradle/
+/*/bin/
+
+# maven ignore
+target/
+*.jar
+*.war
+*.zip
+*.tar
+*.tar.gz
+
+# eclipse ignore
+.settings/
+.project
+.classpath
+
+# idea ignore
+.idea/
+*.ipr
+*.iml
+*.iws
+
+# temp ignore
+*.log
+*.cache
+*.diff
+*.patch
+*.tmp
+*.java~
+*.properties~
+*.xml~
+
+# system ignore
+.DS_Store
+Thumbs.db
+
+# derby directory
+derby-test

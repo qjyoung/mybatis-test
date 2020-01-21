@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.siyueren.mybatistest.mapper.TestMapper">
+    
+    <resultMap id="BaseResultMap" type="com.siyueren.mybatistest.pojo.User">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="name" property="userName" jdbcType="VARCHAR"/>
+        <result column="create_time" property="createTime" jdbcType="BIGINT"/>
+    </resultMap>
+    
+    <sql id="SELECT_TEMPLATE">
+        SELECT id,
+               name,
+               create_time,
+               hobbies,
+               idols
+        FROM mybatis_test
+        WHERE id = #{id}
+    </sql>
+    
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        <include refid="SELECT_TEMPLATE"/>
+    </select>
+    
+    <!--########################## testSimpleMapped ############################-->
+    <resultMap id="simple" type="java.util.Map">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="create_time" property="createTime" jdbcType="BIGINT"/>
+    </resultMap>
+    <select id="testSimpleMapped" resultMap="simple" parameterType="java.lang.Integer">
+        <include refid="SELECT_TEMPLATE"/>
+    </select>
+    
+    <!--######################## testHasNestedMapped ############################-->
+    <resultMap id="nested" type="java.util.Map">
+        <result column="create_time" property="createTime" jdbcType="BIGINT"/>
+        <association property="detail" javaType="java.util.Map">
+            <result column="hobbies" property="hobbies" jdbcType="VARCHAR"/>
+            <result column="idols" property="idols" jdbcType="VARCHAR"/>
+        </association>
+    </resultMap>
+    <select id="testHasNestedMapped" resultMap="nested" parameterType="java.lang.Integer">
+        <include refid="SELECT_TEMPLATE"/>
+    </select>
+</mapper>
