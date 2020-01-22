@@ -11,6 +11,8 @@ public class User {
     
     private Long createTime;
     
+    private UserDetail detail;
+    
     public Integer getId() {
         return id;
     }
@@ -51,6 +53,14 @@ public class User {
         this.createTime = createTime;
     }
     
+    public UserDetail getDetail() {
+        return detail;
+    }
+    
+    public void setDetail(UserDetail detail) {
+        this.detail = detail;
+    }
+    
     @Override
     public String toString() {
         return "User{" +
@@ -59,6 +69,7 @@ public class User {
                 ", hobbies='" + hobbies + '\'' +
                 ", idols='" + idols + '\'' +
                 ", createTime=" + createTime +
+                ", detail=" + detail +
                 '}';
     }
 }

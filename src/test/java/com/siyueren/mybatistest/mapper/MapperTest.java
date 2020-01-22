@@ -1,5 +1,6 @@
 package com.siyueren.mybatistest.mapper;
 
+import com.siyueren.mybatistest.pojo.User;
 import com.siyueren.mybatistest.util.MyBatisUtil;
 import org.apache.ibatis.jdbc.RuntimeSqlException;
 import org.apache.ibatis.session.SqlSession;
@@ -48,6 +49,14 @@ public class MapperTest extends BaseTest {
     }
     
     @Test
+    public void simple() {
+        User user = mapper.selectByPrimaryKey(1);
+        logger.debug("user-1:{}", user);
+        user = mapper.selectByPrimaryKey2(1);
+        logger.debug("user-2:{}", user);
+    }
+    
+    @Test
     public void testSimpleMapped() throws Exception {
         Map<String, Object> simpleMapped = mapper.testSimpleMapped(1);
         logger.debug("simpleMapped:{}", simpleMapped);
@@ -55,8 +64,9 @@ public class MapperTest extends BaseTest {
     
     @Test
     public void testHasNestedMapped() throws Exception {
-        Map<String, Object> simpleMapped = mapper.testSimpleMapped(1);
-        logger.debug("simpleMapped:{}", simpleMapped);
+//        User user = mapper.selectByPrimaryKey(1);
+//        Map<String, Object> simpleMapped = mapper.testSimpleMapped(1);
+//        logger.debug("simpleMapped:{}", simpleMapped);
         Map<String, Object> nestedMapped = mapper.testHasNestedMapped(1);
         logger.debug("nestedMapped:{}", nestedMapped);
     }

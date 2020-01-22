@@ -8,6 +8,16 @@
         <result column="create_time" property="createTime" jdbcType="BIGINT"/>
     </resultMap>
     
+    <resultMap id="BaseResultMapNested" type="com.siyueren.mybatistest.pojo.User">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="name" property="userName" jdbcType="VARCHAR"/>
+        <result column="create_time" property="createTime" jdbcType="BIGINT"/>
+        <association property="detail" javaType="com.siyueren.mybatistest.pojo.UserDetail">
+            <result column="hobbies" property="hobbies" jdbcType="VARCHAR"/>
+            <result column="idols" property="idols" jdbcType="VARCHAR"/>
+        </association>
+    </resultMap>
+    
     <sql id="SELECT_TEMPLATE">
         SELECT id,
                name,
@@ -22,6 +32,10 @@
         <include refid="SELECT_TEMPLATE"/>
     </select>
     
+    <select id="selectByPrimaryKey2" resultMap="BaseResultMapNested" parameterType="java.lang.Integer">
+        <include refid="SELECT_TEMPLATE"/>
+    </select>
+    
     <!--########################## testSimpleMapped ############################-->
     <resultMap id="simple" type="java.util.Map">
         <id column="id" property="id" jdbcType="INTEGER"/>
@@ -32,7 +46,7 @@
     </select>
     
     <!--######################## testHasNestedMapped ############################-->
-    <resultMap id="nested" type="java.util.Map">
+    <resultMap id="nested" autoMapping="true" type="java.util.Map">
         <result column="create_time" property="createTime" jdbcType="BIGINT"/>
         <association property="detail" javaType="java.util.Map">
             <result column="hobbies" property="hobbies" jdbcType="VARCHAR"/>
